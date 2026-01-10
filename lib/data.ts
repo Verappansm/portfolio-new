@@ -74,29 +74,41 @@ export const positionsOfResponsibility = [
 
 export const projects = [
     {
+        slug: "ai-stock-predictor",
         title: "AI Stock Predictor",
         description: "Machine learning model for stock price prediction using LSTM networks.",
+        fullDescription: "A comprehensive machine learning project that uses LSTM (Long Short-Term Memory) neural networks to predict stock prices. The model is trained on historical price data, technical indicators, and sentiment analysis from financial news. Features include real-time predictions, backtesting capabilities, and a dashboard for visualization.",
+        date: "Dec 2024",
         techStack: ["Python", "TensorFlow", "Pandas", "NumPy"],
         github: "https://github.com/verappan/ai-stock-predictor",
         live: null,
     },
     {
+        slug: "portfolio-website",
         title: "Portfolio Website",
         description: "Modern, animated portfolio built with Next.js and Framer Motion.",
+        fullDescription: "This very portfolio website you're viewing! Built from scratch using Next.js 14, React 19, Tailwind CSS, and Framer Motion for smooth animations. Features include dark/light mode, scroll-based animations, a custom timeline component, bento grid layouts, and responsive design optimized for all devices.",
+        date: "Jan 2025",
         techStack: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
         github: "https://github.com/verappan/portfolio",
         live: "https://verappan.dev",
     },
     {
+        slug: "expense-tracker",
         title: "Expense Tracker",
         description: "Full-stack expense tracking application with analytics dashboard.",
+        fullDescription: "A complete expense management solution with features like category-based tracking, recurring expenses, budget alerts, and visual analytics. The backend is built with Django REST Framework with JWT authentication, while the frontend uses React with Chart.js for interactive visualizations.",
+        date: "Oct 2024",
         techStack: ["Django", "PostgreSQL", "React", "Chart.js"],
         github: "https://github.com/verappan/expense-tracker",
         live: null,
     },
     {
+        slug: "chat-application",
         title: "Chat Application",
         description: "Real-time chat application with WebSocket support.",
+        fullDescription: "A real-time messaging platform supporting private chats, group conversations, and file sharing. Built using Socket.io for WebSocket communication, MongoDB for message persistence, and React for the frontend. Features include typing indicators, read receipts, and message reactions.",
+        date: "Aug 2024",
         techStack: ["Node.js", "Socket.io", "MongoDB", "React"],
         github: "https://github.com/verappan/chat-app",
         live: null,
@@ -113,6 +125,13 @@ export const techStack = {
     design: ["Figma", "Adobe XD", "Canva"],
     others: ["Git", "Markdown", "Arduino", "Jira", "Firebase", "Heroku", "Vercel", "Netlify", "Notion", "SAP ERP"],
 };
+
+// Flat list of core technologies for pill badge display
+export const coreTechnologies = [
+    "Python", "JavaScript", "TypeScript", "React.js", "Next.js",
+    "Flask", "Node.js", "Supabase", "PostgreSQL", "MySQL",
+    "MongoDB", "Docker", "Git"
+];
 
 export const stats = [
     { name: "GitHub", value: "200+", label: "Contributions" },

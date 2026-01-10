@@ -4,9 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Instagram, Mail, ExternalLink, Code, Briefcase, User, ChevronRight } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, ExternalLink, Code, Briefcase, User, ChevronRight, ArrowRight } from "lucide-react";
 
-import { FloatingNav } from "@/components/ui/floating-navbar";
 import { DotBackground } from "@/components/ui/dot-background";
 import { Timeline } from "@/components/ui/timeline";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
@@ -20,6 +19,7 @@ import {
   positionsOfResponsibility,
   projects,
   techStack,
+  coreTechnologies,
   stats,
   certifications,
   quotes,
@@ -90,26 +90,6 @@ function HeroSection() {
                 {profileData.bio}
               </motion.p>
 
-              {/* Social Links */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="flex gap-4 justify-center lg:justify-start"
-              >
-                <Link href={profileData.socials.linkedin} target="_blank" className="p-3 rounded-full bg-muted hover:bg-accent transition-colors">
-                  <Linkedin className="w-5 h-5" />
-                </Link>
-                <Link href={profileData.socials.github} target="_blank" className="p-3 rounded-full bg-muted hover:bg-accent transition-colors">
-                  <Github className="w-5 h-5" />
-                </Link>
-                <Link href={profileData.socials.instagram} target="_blank" className="p-3 rounded-full bg-muted hover:bg-accent transition-colors">
-                  <Instagram className="w-5 h-5" />
-                </Link>
-                <Link href={profileData.socials.email} className="p-3 rounded-full bg-muted hover:bg-accent transition-colors">
-                  <Mail className="w-5 h-5" />
-                </Link>
-              </motion.div>
             </div>
 
             {/* Right: Profile Image */}
@@ -224,30 +204,85 @@ function ProjectsSection() {
             />
           ))}
         </BentoGrid>
+
+        {/* More Projects Link - Aligned with the Bento Grid */}
+        <div className="max-w-5xl mx-auto mt-8 flex justify-end">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Link href="/projects">
+              <Button variant="outline" size="lg" className="gap-2">
+                View All Projects <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 
-// About Section with Expandable Tabs
+// About Section - Two Column Layout
 function AboutSection() {
   const tabs = [
-    { title: "Developer", icon: Code },
-    { title: "Business", icon: Briefcase },
-    { type: "separator" as const },
-    { title: "About Me", icon: User },
+    { title: "Software Developer", icon: Code },
+    { title: "Finance Enthusiast", icon: Briefcase },
+    { title: "AI Engineer", icon: User },
   ];
 
-  const summaries = [
-    "As a Software Developer, I specialize in building scalable web applications using modern technologies like React, Next.js, and Python. I'm passionate about clean code, performance optimization, and creating exceptional user experiences.",
-    "With a strong interest in Finance, I bring analytical thinking and data-driven decision making to every project. I've completed certifications in Financial Markets and apply quantitative analysis to solve business problems.",
-    "I'm a multidisciplinary technologist who loves learning and building. When I'm not coding, you'll find me reading about emerging technologies, contributing to open source, or exploring the intersection of AI and finance.",
-  ];
+  const [activeTab, setActiveTab] = useState(0);
 
-  const [selectedTab, setSelectedTab] = useState(0);
+  const tabContent = [
+    {
+      title: "Software Developer",
+      content: (
+        <>
+          <p className="text-xl leading-relaxed">
+            A software engineer with <span className="text-primary font-semibold">1 year</span> of experience
+            building systems that solve real-world problems.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Currently, working as a <span className="text-foreground">Software Developer</span> at{" "}
+            <span className="text-primary">Tech Corp</span>, focusing on scaling platform features through automation.
+            My work involves building robust applications and establishing coding standards.
+          </p>
+        </>
+      ),
+    },
+    {
+      title: "Finance Enthusiast",
+      content: (
+        <>
+          <p className="text-xl leading-relaxed">
+            Passionate about <span className="text-primary font-semibold">financial markets</span> and quantitative analysis.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            I bring analytical thinking and data-driven decision making to every project. I&apos;ve completed
+            certifications in Financial Markets and apply quantitative analysis to solve complex business problems.
+          </p>
+        </>
+      ),
+    },
+    {
+      title: "AI Engineer",
+      content: (
+        <>
+          <p className="text-xl leading-relaxed">
+            Building robust applications and integrating <span className="text-primary font-semibold">AI solutions</span> to improve user experiences.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            I thrive in the intersection of AI and scalable architecture. My goal is to deliver AI-driven products
+            that are not just functional, but exceptional and intuitive.
+          </p>
+        </>
+      ),
+    },
+  ];
 
   return (
-    <section id="about" className="py-20">
+    <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -255,37 +290,81 @@ function AboutSection() {
           viewport={{ once: true }}
           className="text-3xl md:text-5xl font-bold text-center mb-16"
         >
-          About
+          Background
         </motion.h2>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-6xl mx-auto mb-12 flex justify-center">
           <ExpandableTabs
             tabs={tabs}
-            className="justify-center mb-8"
-            onChange={(index) => setSelectedTab(index ?? 0)}
+            onChange={(index) => setActiveTab(index ?? 0)}
           />
+        </div>
 
-          <motion.p
-            key={selectedTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-lg text-muted-foreground text-center mb-12"
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* Left Column - Background Text */}
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-6"
           >
-            {summaries[selectedTab >= summaries.length ? 0 : selectedTab]}
-          </motion.p>
+            {tabContent[activeTab].content}
 
-          {/* Tech Stack */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-center mb-8">Tech Stack</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {Object.entries(techStack).map(([category, items]) => (
-                <div key={category} className="p-4 rounded-lg bg-muted/50">
-                  <h4 className="font-semibold capitalize mb-2">{category}</h4>
-                  <p className="text-sm text-muted-foreground">{items.join(", ")}</p>
-                </div>
-              ))}
+            <p className="text-muted-foreground leading-relaxed">
+              I thrive in the intersection of <span className="text-foreground font-medium">clean code</span> and{" "}
+              <span className="text-foreground font-medium">scalable architecture</span>.
+              My goal is always to deliver products that are not just functional, but exceptional.
+            </p>
+          </motion.div>
+
+          {/* Right Column - Core Technologies & Certifications */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-10"
+          >
+            {/* Core Technologies */}
+            <div>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+                / Core Technologies
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {coreTechnologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-4 py-2 text-sm rounded-full border bg-card hover:bg-accent transition-colors"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <Link href="/tech-stack" className="inline-flex items-center gap-2 mt-4 text-sm text-primary hover:underline">
+                View All Tech Stack <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-          </div>
+
+            {/* Certifications Preview */}
+            <div>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+                / Certifications
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {certifications.slice(0, 2).map((cert) => (
+                  <div
+                    key={cert.name}
+                    className="p-4 rounded-lg border bg-card"
+                  >
+                    <p className="font-medium">{cert.name}</p>
+                    <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                  </div>
+                ))}
+              </div>
+              <Link href="/certifications" className="inline-flex items-center gap-2 mt-4 text-sm text-primary hover:underline">
+                View All Certifications <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -417,6 +496,9 @@ function Footer() {
           <Link href={profileData.socials.github} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
             <Github className="w-5 h-5" />
           </Link>
+          <Link href={profileData.socials.instagram} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Instagram className="w-5 h-5" />
+          </Link>
           <Link href={profileData.socials.email} className="text-muted-foreground hover:text-foreground transition-colors">
             <Mail className="w-5 h-5" />
           </Link>
@@ -430,14 +512,11 @@ function Footer() {
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <FloatingNav navItems={navItems} />
       <HeroSection />
       <ExperienceSection />
       <ProjectsSection />
       <AboutSection />
       <StatsSection />
-      <CertificationsSection />
-      <BlogSection />
       <Footer />
     </main>
   );
