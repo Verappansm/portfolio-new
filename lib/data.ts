@@ -18,56 +18,206 @@ export const profileData = {
 
 export const workExperience = [
     {
+        title: "2026",
+        role: "Business Development Intern",
+        organization: "HealthPilot.ai | Botcode Technologies",
+        duration: "Oct 2025 - Jan 2026",
+        bullets: [
+            "Owned end-to-end go-to-market execution including lead generation, outbound outreach, client qualification and strategic sales conversations with enterprise and healthcare stakeholders.",
+            "Drove core business strategy through pricing design, unit economics and financial analysis, competitive landscape mapping, and creation of high-impact pitch decks for clients, partners, and investors.",
+        ],
+    },
+    {
+        title: "2025",
+        role: "Summer Intern – Full Stack Engineer",
+        organization: "Fidelity Investments",
+        duration: "May 2025 - Jul 2025",
+        bullets: [
+            "Developed and enhanced internal tools in the Marketing Technology division, including automation features and a developer documentation generator.",
+            "Analyzed large-scale ActionLogger data in AWS S3 using Athena and built interactive Tableau dashboards to improve data-driven decision-making.",
+        ],
+    },
+    {
         title: "2024",
-        role: "Software Developer",
-        organization: "Tech Corp",
-        duration: "Jan 2024 - Present",
+        role: "Undergraduate Research Assistant - BackEnd Developer",
+        organization: "VIT Chennai",
+        duration: "May 2024 - Sep 2024",
         bullets: [
-            "Led development of core platform features, improving performance by 40%.",
-            "Mentored junior developers and established coding standards.",
+            "Designed and developed multiple web applications using Django, gaining hands-on experience in backend development.",
+            "Built and deployed RESTful APIs using Django REST Framework for efficient data exchange and integration.",
         ],
     },
     {
-        title: "2023",
-        role: "Junior Developer",
-        organization: "Startup Inc.",
-        duration: "Jun 2023 - Dec 2023",
+        title: "2024",
+        role: "AI Developer",
+        organization: "CLSS LABS",
+        duration: "Jun 2024 - Jul 2024",
         bullets: [
-            "Built RESTful APIs using Django and Node.js.",
-            "Contributed to frontend development with React and Tailwind CSS.",
+            "Developed B2B productivity tools using GPT-3.5 and LangChain, including an HR Mail Assistant and Database Retriever.",
+            "Applied software engineering principles such as modular design, version control, and testing in project development. Leveraged Streamlit, SQLAlchemy, and PostgreSQL for backend development and data management.",
         ],
     },
     {
-        title: "2022",
-        role: "Intern",
-        organization: "Data Labs",
-        duration: "May 2022 - Aug 2022",
+        title: "2024",
+        role: "Undergraduate Research Assistant",
+        organization: "Vellore Institute of Technology",
+        duration: "Mar 2023 - Mar 2024",
         bullets: [
-            "Developed data analysis pipelines using Python and Pandas.",
-            "Assisted in building machine learning models for predictive analytics.",
+            "Engaged in research focused on the development of efficient lightweight S-boxes and the analysis of statistical cryptographic attacks. Contributed to both theoretical research and practical code implementation.",
         ],
     },
 ];
 
 export const positionsOfResponsibility = [
     {
-        title: "2024",
-        role: "Technical Lead",
-        organization: "College Tech Club",
-        duration: "Aug 2024 - Present",
+        title: "2025",
+        organization: "SCOPE Department, VIT Chennai",
+        duration: "Jan 2025 - Dec 2025",
+        role: "Project Manager",
         bullets: [
-            "Leading a team of 15+ members in organizing hackathons and workshops.",
-            "Mentoring students in web development and open source contributions.",
+            "Managing a team to deliver multiple web-based tools for enterprise-level academic operations and process automation.",
+            "Collaborating with management and faculties to gather requirements, document user needs and prioritize features across different projects.",
+            "Assigning tasks, reviewing deliverables, conducting testing, and ensuring functionality aligns with stakeholder expectations.",
+            "Conducting user walkthroughs and iterative feedback sessions to refine tools and improve usability.",
+        ],
+    },
+    {
+        title: "2024",
+        organization: "VIT Chennai",
+        roles: [
+            {
+                role: "Executive Secretary",
+                duration: "Dec 2024 - Present",
+                bullets: [
+                    "Leading executive operations and coordinating between various university departments for strategic initiatives.",
+                ],
+            },
+            {
+                role: "Student Council Member",
+                duration: "Aug 2024 - Dec 2024",
+                bullets: [
+                    "Served as the Overall Coordinator for the university-wide Open Day event at VIT Chennai, overseeing planning, logistics, and execution.",
+                    "Contributed to the organization and management of major institutional events such as Convocation, Farewell, and others at the university level.",
+                ],
+            },
+        ],
+    },
+    {
+        title: "2024",
+        organization: "Placexp Club",
+        roles: [
+            {
+                role: "President",
+                duration: "May 2024 - Present",
+                bullets: [
+                    "Conducted several events to help students receive placement insights from industry experts.",
+                    "Laid a platform for placement insight sharing between seniors and juniors.",
+                ],
+            },
+            {
+                role: "Marketing Lead",
+                duration: "Previous",
+                bullets: [
+                    "Rejuvenated the club's social media presence, outreach, and visibility through strategic content and engagement campaigns.",
+                ],
+            },
+        ],
+    },
+    {
+        title: "2024",
+        organization: "TechnoVIT'24",
+        duration: "Jul 2024 - Sep 2024",
+        role: "Overall Coordinator",
+        bullets: [
+            "Led the central organizing committee of TechnoVIT'24, the university’s flagship technical fest.",
+            "Oversaw key departments including Event Management Committee (EMC), Outreach, and Budgeting, ensuring seamless coordination and execution.",
+        ],
+    },
+    {
+        title: "2024",
+        organization: "Vibrance '24",
+        duration: "Feb 2024 - Mar 2024",
+        role: "Team Lead, Reg. Analytics",
+        bullets: [
+            "Handled registration data analytics and visualizations for the university's cultural fest.",
+            "Built extensions and micro-automation pipelines to streamline the flow and improve data accuracy.",
+        ],
+    },
+    {
+        title: "2024",
+        organization: "Microsoft Innovations Club VITC",
+        roles: [
+            {
+                role: "Management Lead",
+                duration: "Apr 2024 - May 2025",
+                bullets: [
+                    "Lead multiple flagship events innovation, planning and implementation with complete ownership.",
+                    "Achieved success in product releases and event execution end-to-end.",
+                ],
+            },
+            {
+                role: "AI/ML department member",
+                duration: "Dec 2023 - Jun 2024",
+                bullets: [
+                    "Contributed to AI/ML projects and exploratory data analysis initiatives within the club.",
+                ],
+            },
+            {
+                role: "Management Team Member",
+                duration: "Oct 2023 - Mar 2024",
+                bullets: [
+                    "Assisted in event planning, venue management, and team leadership for club activities.",
+                ],
+            },
+        ],
+    },
+    {
+        title: "2024",
+        organization: "CodeChef VIT Chennai Chapter",
+        roles: [
+            {
+                role: "Finance Lead",
+                duration: "Apr 2024 - May 2025",
+                bullets: [
+                    "Streamlined the club finances and operations, documented the process and created accountability.",
+                    "Led finance sessions for the team to discuss current developments and created a community to share and learn.",
+                ],
+            },
+            {
+                role: "Competitive programmer",
+                duration: "Sep 2023 - Jun 2024",
+                bullets: [
+                    "Active member of the competitive programming wing, participating in various contests and training sessions.",
+                ],
+            },
+        ],
+    },
+    {
+        title: "2024",
+        organization: "180 Degrees Consulting VIT Chennai",
+        duration: "Mar 2024 - May 2025",
+        role: "Core member",
+        bullets: [
+            "Attended to external client jobs in consulting, providing strategic advice and operational solutions.",
+        ],
+    },
+    {
+        title: "2024",
+        organization: "Voice-IT Club",
+        duration: "Jan 2024 - May 2025",
+        role: "Radio Host",
+        bullets: [
+            "Podcast and radio host in English and Tamil, managing content creation and broadcasting.",
         ],
     },
     {
         title: "2023",
-        role: "Core Committee Member",
-        organization: "Finance Society",
-        duration: "Jun 2023 - May 2024",
+        organization: "DAO Community VIT-C",
+        duration: "Sep 2023 - May 2025",
+        role: "Operations Team Member",
         bullets: [
-            "Organized finance-related events and speaker sessions.",
-            "Managed a budget of $5000+ for annual events.",
+            "Helped in planning and conducting national level flagship web3 hackathons.",
+            "Managed sponsorships, budgeting, and multiple operational aspects of large-scale events.",
         ],
     },
 ];
@@ -157,6 +307,9 @@ export const quotes = [
 ];
 
 export const randomFacts = [
+    "The makers of Barbie and Hot Wheels were husband and wife.",
+    "Humpback whales protect seals against orca attacks; they are one of the few species to have cross-species empathy.",
+    "Dolphins take drugs in the form of biting puffer fish.",
     "I can solve a Rubik's cube in under 2 minutes.",
     "I've read 50+ books on finance and technology.",
     "I type at 90 WPM on a good day.",

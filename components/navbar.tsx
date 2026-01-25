@@ -36,7 +36,7 @@ export function Navbar({ className }: { className?: string }) {
                         <Link href="/#experience" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                             Experience
                         </Link>
-                        <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/#projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                             Projects
                         </Link>
                         <Link href="/#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">

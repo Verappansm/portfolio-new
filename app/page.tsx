@@ -12,6 +12,7 @@ import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { ExpandableTabs } from "@/components/ui/expandable-tabs";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/footer";
 
 import {
   profileData,
@@ -122,37 +123,100 @@ function HeroSection() {
 
 // Experience Section
 function ExperienceSection() {
-  const timelineData = workExperience.map((exp) => ({
-    title: exp.title,
-    content: (
-      <div>
-        <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>
-        <p className="text-muted-foreground mb-2">{exp.organization} • {exp.duration}</p>
-        <ul className="list-disc list-inside text-sm text-muted-foreground">
-          {exp.bullets.map((bullet, i) => (
-            <li key={i}>{bullet}</li>
-          ))}
-        </ul>
-      </div>
-    ),
-  }));
+  const [activeTab, setActiveTab] = useState<"work" | "positions">("work");
+
+  const timelineData = useMemo(() => {
+    const data = activeTab === "work" ? workExperience : positionsOfResponsibility;
+    return data.map((exp: any) => ({
+      title: exp.title,
+      content: (
+        <motion.div
+          key={`${activeTab}-${exp.organization}-${exp.role || "multi"}`}
+          initial={{ opacity: 0, x: activeTab === "work" ? -20 : 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="flex flex-col">
+            {exp.roles ? (
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">{exp.organization}</h3>
+                <div className="relative pl-6 border-l-2 border-muted ml-1 space-y-8">
+                  {exp.roles.map((role: any, idx: number) => (
+                    <div key={idx} className="relative">
+                      {/* Role Dot */}
+                      <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-muted border-2 border-background" />
+                      <h4 className="text-lg font-bold text-foreground">{role.role}</h4>
+                      <p className="text-sm text-muted-foreground mb-2">{role.duration}</p>
+                      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                        {role.bullets.map((bullet: string, i: number) => (
+                          <li key={i}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div>
+                <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>
+                <p className="text-muted-foreground mb-2">{exp.organization} • {exp.duration}</p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  {exp.bullets.map((bullet: string, i: number) => (
+                    <li key={i}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      ),
+    }));
+  }, [activeTab]);
 
   return (
     <section id="experience" className="py-20">
       <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center mb-16"
-        >
-          Work Experience
-        </motion.h2>
-        <Timeline data={timelineData} />
+        <div className="flex flex-col items-center mb-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-bold text-center mb-8"
+          >
+            Experience
+          </motion.h2>
+
+          {/* Toggle Switch */}
+          <div className="flex bg-muted/50 p-1 rounded-full border border-border">
+            <button
+              onClick={() => setActiveTab("work")}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === "work"
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+                }`}
+            >
+              Work Experience
+            </button>
+            <button
+              onClick={() => setActiveTab("positions")}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === "positions"
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+                }`}
+            >
+              Positions of Responsibility
+            </button>
+          </div>
+        </div>
+
+        <div className="relative">
+          <Timeline data={timelineData} />
+        </div>
       </div>
     </section>
   );
 }
+
 
 // Projects Section
 function ProjectsSection() {
@@ -481,32 +545,6 @@ function BlogSection() {
   );
 }
 
-// Footer
-function Footer() {
-  return (
-    <footer className="py-12 border-t">
-      <div className="container mx-auto px-4 text-center">
-        <p className="text-muted-foreground">
-          © {new Date().getFullYear()} {profileData.name}. Built with Next.js & Tailwind CSS.
-        </p>
-        <div className="flex gap-4 justify-center mt-4">
-          <Link href={profileData.socials.linkedin} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Linkedin className="w-5 h-5" />
-          </Link>
-          <Link href={profileData.socials.github} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Github className="w-5 h-5" />
-          </Link>
-          <Link href={profileData.socials.instagram} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Instagram className="w-5 h-5" />
-          </Link>
-          <Link href={profileData.socials.email} className="text-muted-foreground hover:text-foreground transition-colors">
-            <Mail className="w-5 h-5" />
-          </Link>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 // Main Page Component
 export default function Home() {
