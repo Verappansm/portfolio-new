@@ -7,17 +7,40 @@ import { Timeline } from "@/components/ui/timeline";
 import { positionsOfResponsibility } from "@/lib/data";
 
 export default function PositionsPage() {
-    const timelineData = positionsOfResponsibility.map((pos) => ({
-        title: pos.title,
+    const timelineData = positionsOfResponsibility.map((exp: any) => ({
+        title: exp.title,
         content: (
-            <div>
-                <h3 className="text-xl font-bold text-foreground">{pos.role}</h3>
-                <p className="text-muted-foreground mb-2">{pos.organization} • {pos.duration}</p>
-                <ul className="list-disc list-inside text-sm text-muted-foreground">
-                    {pos.bullets.map((bullet, i) => (
-                        <li key={i}>{bullet}</li>
-                    ))}
-                </ul>
+            <div className="flex flex-col">
+                {exp.roles ? (
+                    <div className="space-y-4">
+                        <h3 className="text-2xl font-bold text-foreground">{exp.organization}</h3>
+                        <div className="relative pl-6 border-l-2 border-muted ml-1 space-y-8">
+                            {exp.roles.map((role: any, idx: number) => (
+                                <div key={idx} className="relative">
+                                    {/* Role Dot */}
+                                    <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-muted border-2 border-background" />
+                                    <h4 className="text-lg font-bold text-foreground">{role.role}</h4>
+                                    <p className="text-sm text-muted-foreground mb-2">{role.duration}</p>
+                                    <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                                        {role.bullets.map((bullet: string, i: number) => (
+                                            <li key={i}>{bullet}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div>
+                        <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>
+                        <p className="text-muted-foreground mb-2">{exp.organization} • {exp.duration}</p>
+                        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                            {exp.bullets.map((bullet: string, i: number) => (
+                                <li key={i}>{bullet}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
         ),
     }));
