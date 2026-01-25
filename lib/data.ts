@@ -9,10 +9,10 @@ export const profileData = {
     bio: "Software Developer, Finance Enthusiast, and AI Engineer with a passion for building impactful solutions.",
     roles: ["Software Developer", "Finance Enthusiast", "AI Engineer"],
     socials: {
-        linkedin: "https://linkedin.com/in/verappan",
-        github: "https://github.com/verappan",
-        instagram: "https://instagram.com/verappan",
-        email: "mailto:verappan@example.com",
+        linkedin: "https://www.linkedin.com/in/verappansm/",
+        github: "https://github.com/Verappansm",
+        instagram: "https://www.instagram.com/_._verappan_._/",
+        email: "mailto:smverappan@gmail.com",
     },
 };
 

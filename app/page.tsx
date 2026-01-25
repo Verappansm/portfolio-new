@@ -48,14 +48,7 @@ function HeroSection() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             {/* Left: Text Content */}
             <div className="flex-1 text-center lg:text-left">
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-muted-foreground mb-4"
-              >
-                Hi there 👋
-              </motion.p>
+
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

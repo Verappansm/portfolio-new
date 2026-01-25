@@ -80,45 +80,7 @@ export default function MorePage() {
                     </Link>
                 </div>
 
-                {/* Quick Preview */}
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-2xl font-bold mb-8 text-center text-white">Quick Preview</h2>
 
-                    {/* Random Quote */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="p-8 rounded-2xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-white/10 backdrop-blur-sm mb-8"
-                    >
-                        <Quote className="h-8 w-8 mb-4 text-purple-500" />
-                        <p className="text-xl italic mb-4 text-white">"{quotes[Math.floor(Math.random() * quotes.length)]}"</p>
-                    </motion.div>
-
-                    {/* Random Fact */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                        className="p-8 rounded-2xl bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border border-white/10 backdrop-blur-sm mb-8"
-                    >
-                        <Lightbulb className="h-8 w-8 mb-4 text-orange-500" />
-                        <p className="text-lg text-white">💡 {randomFacts[Math.floor(Math.random() * randomFacts.length)]}</p>
-                    </motion.div>
-
-                    {/* Latest Blog */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.6 }}
-                        className="p-8 rounded-2xl bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-white/10 backdrop-blur-sm"
-                    >
-                        <BookOpen className="h-8 w-8 mb-4 text-blue-500" />
-                        <p className="text-sm text-muted-foreground mb-2">Latest Article</p>
-                        <h3 className="text-xl font-bold mb-2 text-white">{blogs[0].title}</h3>
-                        <p className="text-muted-foreground">{blogs[0].excerpt}</p>
-                    </motion.div>
-                </div>
             </div>
         </main>
     );

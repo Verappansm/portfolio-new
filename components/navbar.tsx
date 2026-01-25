@@ -1,13 +1,49 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Github, Linkedin, Instagram, Mail } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { profileData } from "@/lib/data";
+import { motion } from "framer-motion";
 
 export function Navbar({ className }: { className?: string }) {
+    const [activeSection, setActiveSection] = useState("home");
+
+    useEffect(() => {
+        const sections = ["home", "experience", "projects", "about"];
+        const observerOptions = {
+            root: null,
+            rootMargin: "-20% 0px -70% 0px",
+            threshold: 0,
+        };
+
+        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        sections.forEach((id) => {
+            const element = document.getElementById(id);
+            if (element) observer.observe(element);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+    const navLinks = [
+        { name: "Home", href: "/#home", id: "home" },
+        { name: "Experience", href: "/#experience", id: "experience" },
+        { name: "Projects", href: "/#projects", id: "projects" },
+        { name: "About", href: "/#about", id: "about" },
+    ];
+
     return (
         <header
             className={cn(
@@ -19,30 +55,41 @@ export function Navbar({ className }: { className?: string }) {
                 <div className="flex items-center justify-between h-16">
                     {/* Left: Logo + Name */}
                     <div className="flex items-center gap-3">
-                        {/* Logo placeholder */}
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">
+                        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
                             V
                         </div>
-                        <Link href="/" className="font-semibold text-lg">
+                        <Link href="/" className="font-semibold text-lg hover:text-primary transition-colors">
                             {profileData.name}
                         </Link>
                     </div>
 
                     {/* Center: Navigation Links */}
                     <nav className="hidden md:flex items-center gap-6">
-                        <Link href="/#home" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                            Home
-                        </Link>
-                        <Link href="/#experience" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                            Experience
-                        </Link>
-                        <Link href="/#projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                            Projects
-                        </Link>
-                        <Link href="/#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                            About
-                        </Link>
-                        <Link href="/more" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.id}
+                                href={link.href}
+                                className={cn(
+                                    "text-sm font-medium transition-colors relative group",
+                                    activeSection === link.id
+                                        ? "text-primary"
+                                        : "text-muted-foreground hover:text-foreground"
+                                )}
+                            >
+                                {link.name}
+                                {activeSection === link.id && (
+                                    <motion.div
+                                        layoutId="activeNav"
+                                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    />
+                                )}
+                            </Link>
+                        ))}
+                        <Link
+                            href="/more"
+                            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                        >
                             More
                         </Link>
                     </nav>
