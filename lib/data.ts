@@ -6,8 +6,8 @@ export const profileData = {
     avatarFallback: "VP",
     location: "India",
     motto: "\"The only history that is worth a damn is the history we make today.\" — Henry Ford",
-    bio: "Software Developer, Finance Enthusiast, and AI Engineer with a passion for building impactful solutions.",
-    roles: ["Software Developer", "Finance Enthusiast", "AI Engineer"],
+    bio: "Software Developer, Business Analyst, and AI Engineer with a passion for building impactful solutions.",
+    roles: ["Software Developer", "Business Analyst", "AI Engineer"],
     socials: {
         linkedin: "https://www.linkedin.com/in/verappansm/",
         github: "https://github.com/Verappansm",
@@ -224,63 +224,63 @@ export const positionsOfResponsibility = [
 
 export const projects = [
     {
-        slug: "ai-stock-predictor",
-        title: "AI Stock Predictor",
-        description: "Machine learning model for stock price prediction using LSTM networks.",
-        fullDescription: "A comprehensive machine learning project that uses LSTM (Long Short-Term Memory) neural networks to predict stock prices. The model is trained on historical price data, technical indicators, and sentiment analysis from financial news. Features include real-time predictions, backtesting capabilities, and a dashboard for visualization.",
-        date: "Dec 2024",
-        techStack: ["Python", "TensorFlow", "Pandas", "NumPy"],
-        github: "https://github.com/verappan/ai-stock-predictor",
+        slug: "day-planner",
+        title: "Collaborative Day Planner",
+        description: "A collaborative AI-enabled day out planner.",
+        fullDescription: "Built with Next.js 16 and TypeScript, this collaborative AI-enabled day out planner helps groups create itineraries seamlessly. It features real-time collaboration and intelligent pathing for a perfect day out.",
+        date: "Feb 2025",
+        techStack: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
+        github: "https://github.com/Verappansm/day-planner",
         live: null,
     },
     {
-        slug: "portfolio-website",
-        title: "Portfolio Website",
-        description: "Modern, animated portfolio built with Next.js and Framer Motion.",
-        fullDescription: "This very portfolio website you're viewing! Built from scratch using Next.js 14, React 19, Tailwind CSS, and Framer Motion for smooth animations. Features include dark/light mode, scroll-based animations, a custom timeline component, bento grid layouts, and responsive design optimized for all devices.",
+        slug: "fidelity-leap-springboot",
+        title: "Fidelity Leap - Money Transfer",
+        description: "A money transfer system built in Spring Boot.",
+        fullDescription: "A robust money transfer system developed as a capstone project. Built with Spring Boot 3.5, Java 17, and MySQL, it implements secure transaction handling, JPA for data persistence, and a modular architecture for scalability.",
+        date: "Feb 2025",
+        techStack: ["Java", "Spring Boot", "MySQL", "JPA", "Maven"],
+        github: "https://github.com/Verappansm/Fidelity-leap-springboot",
+        live: null,
+    },
+    {
+        slug: "readme-generator",
+        title: "Interactive README Generator",
+        description: "A GitHub README generator with an interactive interface.",
+        fullDescription: "An interactive tool designed to simplify the process of creating high-quality GitHub README files. Built using HTML, CSS, and JavaScript, it provides a user-friendly interface for generating well-structured documentation.",
         date: "Jan 2025",
-        techStack: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-        github: "https://github.com/verappan/portfolio",
-        live: "https://verappan.dev",
-    },
-    {
-        slug: "expense-tracker",
-        title: "Expense Tracker",
-        description: "Full-stack expense tracking application with analytics dashboard.",
-        fullDescription: "A complete expense management solution with features like category-based tracking, recurring expenses, budget alerts, and visual analytics. The backend is built with Django REST Framework with JWT authentication, while the frontend uses React with Chart.js for interactive visualizations.",
-        date: "Oct 2024",
-        techStack: ["Django", "PostgreSQL", "React", "Chart.js"],
-        github: "https://github.com/verappan/expense-tracker",
+        techStack: ["HTML", "CSS", "JavaScript"],
+        github: "https://github.com/Verappansm/readme_generator",
         live: null,
     },
     {
-        slug: "chat-application",
-        title: "Chat Application",
-        description: "Real-time chat application with WebSocket support.",
-        fullDescription: "A real-time messaging platform supporting private chats, group conversations, and file sharing. Built using Socket.io for WebSocket communication, MongoDB for message persistence, and React for the frontend. Features include typing indicators, read receipts, and message reactions.",
-        date: "Aug 2024",
-        techStack: ["Node.js", "Socket.io", "MongoDB", "React"],
-        github: "https://github.com/verappan/chat-app",
+        slug: "database-retriever",
+        title: "AI Database Retriever",
+        description: "An AI database retriever that handles natural language queries without leaking data.",
+        fullDescription: "A privacy-first SQL query generator using LangChain and Streamlit. It allows users to query databases using natural language or voice commands by only sharing the schema with the LLM, ensuring sensitive data remains secure.",
+        date: "Nov 2024",
+        techStack: ["Python", "LangChain", "Streamlit", "SQLAlchemy", "PostgreSQL"],
+        github: "https://github.com/Verappansm/Database_retriever",
         live: null,
     },
 ];
 
 export const techStack = {
-    languages: ["Python", "C++", "C", "Java", "R"],
-    backend: ["Django", "Django REST", "Node.js", "JWT", "jQuery"],
-    frontend: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "React", "Bootstrap"],
+    languages: ["Python", "C++", "C", "Java", "TypeScript", "R"],
+    backend: ["Django", "Django REST", "Spring Boot", "Node.js", "LangChain", "SQLAlchemy", "JWT", "jQuery"],
+    frontend: ["Next.js", "React", "HTML5", "CSS3", "JavaScript", "Tailwind CSS", "Bootstrap"],
     libraries: ["scikit-learn", "NumPy", "Pandas", "Pytest", "QuantLib"],
     databases: ["MySQL", "SQLite", "PostgreSQL", "SQL Server", "MongoDB"],
     dataScience: ["Power BI", "Tableau", "Chart.js", "SAS"],
     design: ["Figma", "Adobe XD", "Canva"],
-    others: ["Git", "Markdown", "Arduino", "Jira", "Firebase", "Heroku", "Vercel", "Netlify", "Notion", "SAP ERP"],
+    others: ["Git", "Maven", "Streamlit", "Markdown", "Arduino", "Jira", "Firebase", "Heroku", "Vercel", "Netlify", "Notion", "SAP ERP"],
 };
 
 // Flat list of core technologies for pill badge display
 export const coreTechnologies = [
     "Python", "JavaScript", "TypeScript", "React.js", "Next.js",
-    "Flask", "Node.js", "Supabase", "PostgreSQL", "MySQL",
-    "MongoDB", "Docker", "Git"
+    "Spring Boot", "LangChain", "Node.js", "Supabase", "PostgreSQL",
+    "MySQL", "MongoDB", "Docker", "Git"
 ];
 
 export const stats = [
@@ -288,7 +288,7 @@ export const stats = [
     { name: "LeetCode", value: "150+", label: "Problems Solved" },
     { name: "CodeChef", value: "3★", label: "Rating" },
     { name: "Kaggle", value: "Expert", label: "Tier" },
-    { name: "Medium", value: "10+", label: "Articles" },
+    { name: "Medium", value: "5+", label: "Articles" },
     { name: "Monkeytype", value: "90 WPM", label: "Typing Speed" },
 ];
 
@@ -343,4 +343,63 @@ export const navItems = [
     { name: "Projects", link: "#projects" },
     { name: "About", link: "#about" },
     { name: "Blog", link: "#blog" },
+];
+
+export const backgroundRoles = [
+    {
+        title: "Software Developer",
+        subtitle: "A software engineer building systems that solve real-world problems.",
+        description: "Currently working as a Software Developer at Fidelity Investments, focusing on scaling platform features through automation and clean architecture. My work involves building robust applications.\n\nI operate at the intersection of code and scalable systems, aiming to ship products that are not just functional, but exceptional.",
+        techStack: [
+            "Python", "JavaScript", "TypeScript", "React.js", "Next.js",
+            "Spring Boot", "Node.js", "PostgreSQL", "MySQL", "MongoDB",
+            "Docker", "Git"
+        ],
+        certifications: [
+            {
+                name: "Django REST Framework",
+                issuer: "Udemy",
+                link: "https://www.udemy.com/certificate/UC-b5f14cab-ebf5-40e1-bf2c-731f8a74ec1c/"
+            },
+            {
+                name: "Django3 Fullstack WebDev",
+                issuer: "Udemy",
+                link: "https://www.udemy.com/certificate/UC-8a2f7789-601f-4b33-8b13-9793ea1fd588/"
+            },
+            {
+                name: "Data Structures & Management(MySQL)",
+                issuer: "Coursera",
+                link: "https://www.coursera.org/account/accomplishments/verify/KBTLABP23VXD"
+            }
+        ]
+    },
+    {
+        title: "Business Analyst",
+        subtitle: "A business-focused problem solver translating data into strategic decisions.",
+        description: "I work on identifying gaps, optimizing processes, and aligning technology with business outcomes. My focus is on structured thinking, stakeholder clarity, and measurable impact.\n\nI bridge the gap between technical teams and business goals to ensure solutions are practical, scalable, and value-driven.",
+        techStack: [
+            "SQL", "Excel", "Power BI", "Tableau", "Python (Data Analysis)",
+            "Jira", "Confluence", "SAP ERP", "Google Analytics", "Miro",
+            "Notion", "Apollo AI"
+        ],
+        certifications: [
+            { name: "Google Data Analytics", issuer: "Google", link: "" },
+            { name: "SAP ERP Fundamentals", issuer: "SAP", link: "" },
+            { name: "Agile & Scrum Certification", issuer: "Scrum.org", link: "" }
+        ]
+    },
+    {
+        title: "AI Engineer",
+        subtitle: "An AI engineer building intelligent systems that learn, adapt, and automate.",
+        description: "I focus on designing data-driven models and deploying AI-powered applications that enhance decision-making and user experience. My work spans model development, prompt engineering, and production deployment.\n\nI aim to build AI systems that are not just innovative, but reliable, explainable, and impactful.",
+        techStack: [
+            "Python", "TensorFlow", "PyTorch", "Scikit-learn", "LangChain",
+            "OpenAI API", "Hugging Face", "FastAPI"
+        ],
+        certifications: [
+            { name: "Machine Learning Specialization", issuer: "DeepLearning.AI", link: "" },
+            { name: "Deep Learning Certification", issuer: "DeepLearning.AI", link: "" },
+            { name: "Generative AI Certification", issuer: "DeepLearning.AI", link: "" }
+        ]
+    }
 ];

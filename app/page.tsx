@@ -27,6 +27,7 @@ import {
   randomFacts,
   blogs,
   navItems,
+  backgroundRoles,
 } from "@/lib/data";
 
 // Hero Section with Animated Roles
@@ -283,60 +284,14 @@ function ProjectsSection() {
 
 // About Section - Two Column Layout
 function AboutSection() {
-  const tabs = [
-    { title: "Software Developer", icon: Code },
-    { title: "Finance Enthusiast", icon: Briefcase },
-    { title: "AI Engineer", icon: User },
-  ];
-
   const [activeTab, setActiveTab] = useState(0);
 
-  const tabContent = [
-    {
-      title: "Software Developer",
-      content: (
-        <>
-          <p className="text-xl leading-relaxed">
-            A software engineer with <span className="text-primary font-semibold">1 year</span> of experience
-            building systems that solve real-world problems.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Currently, working as a <span className="text-foreground">Software Developer</span> at{" "}
-            <span className="text-primary">Tech Corp</span>, focusing on scaling platform features through automation.
-            My work involves building robust applications and establishing coding standards.
-          </p>
-        </>
-      ),
-    },
-    {
-      title: "Finance Enthusiast",
-      content: (
-        <>
-          <p className="text-xl leading-relaxed">
-            Passionate about <span className="text-primary font-semibold">financial markets</span> and quantitative analysis.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            I bring analytical thinking and data-driven decision making to every project. I&apos;ve completed
-            certifications in Financial Markets and apply quantitative analysis to solve complex business problems.
-          </p>
-        </>
-      ),
-    },
-    {
-      title: "AI Engineer",
-      content: (
-        <>
-          <p className="text-xl leading-relaxed">
-            Building robust applications and integrating <span className="text-primary font-semibold">AI solutions</span> to improve user experiences.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            I thrive in the intersection of AI and scalable architecture. My goal is to deliver AI-driven products
-            that are not just functional, but exceptional and intuitive.
-          </p>
-        </>
-      ),
-    },
-  ];
+  const activeRole = backgroundRoles[activeTab];
+
+  const tabs = backgroundRoles.map((role) => ({
+    title: role.title,
+    icon: role.title === "Software Developer" ? Code : role.title === "Business Analyst" ? Briefcase : User,
+  }));
 
   return (
     <section id="about" className="py-20 bg-muted/30">
@@ -353,7 +308,8 @@ function AboutSection() {
         <div className="max-w-6xl mx-auto mb-12 flex justify-center">
           <ExpandableTabs
             tabs={tabs}
-            onChange={(index) => setActiveTab(index ?? 0)}
+            onChange={(index) => setActiveTab(index)}
+            initialSelected={0}
           />
         </div>
 
@@ -365,20 +321,22 @@ function AboutSection() {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-6"
           >
-            {tabContent[activeTab].content}
+            <div className="space-y-4">
+              <p className="text-xl font-semibold text-primary">
+                {activeRole.subtitle}
+              </p>
+              <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                {activeRole.description}
+              </div>
+            </div>
 
-            <p className="text-muted-foreground leading-relaxed">
-              I thrive in the intersection of <span className="text-foreground font-medium">clean code</span> and{" "}
-              <span className="text-foreground font-medium">scalable architecture</span>.
-              My goal is always to deliver products that are not just functional, but exceptional.
-            </p>
           </motion.div>
 
           {/* Right Column - Core Technologies & Certifications */}
           <motion.div
+            key={`content-${activeTab}`}
             initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             className="space-y-10"
           >
             {/* Core Technologies */}
@@ -387,7 +345,7 @@ function AboutSection() {
                 / Core Technologies
               </p>
               <div className="flex flex-wrap gap-3">
-                {coreTechnologies.map((tech) => (
+                {activeRole.techStack.map((tech) => (
                   <span
                     key={tech}
                     className="px-4 py-2 text-sm rounded-full border bg-card hover:bg-accent transition-colors"
@@ -407,13 +365,24 @@ function AboutSection() {
                 / Certifications
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {certifications.slice(0, 2).map((cert) => (
+                {activeRole.certifications.slice(0, 4).map((cert) => (
                   <div
                     key={cert.name}
-                    className="p-4 rounded-lg border bg-card"
+                    className="p-4 rounded-lg border bg-card group transition-all hover:border-primary/50"
                   >
-                    <p className="font-medium">{cert.name}</p>
-                    <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                    <p className="font-medium line-clamp-2 mb-1">{cert.name}</p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                      {cert.link && (
+                        <Link
+                          href={cert.link}
+                          target="_blank"
+                          className="inline-flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          Verify <ExternalLink className="w-3 h-3" />
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
