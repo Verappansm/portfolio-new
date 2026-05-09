@@ -299,43 +299,6 @@ export const certifications = [
     { name: "Financial Markets", issuer: "Yale University", year: "2022" },
 ];
 
-export const quotes = [
-    "Code is poetry, but the real art is in the architecture.",
-    "The best way to predict the future is to create it.",
-    "Simplicity is the ultimate sophistication.",
-    "First, solve the problem. Then, write the code.",
-];
-
-export const randomFacts = [
-    "The makers of Barbie and Hot Wheels were husband and wife.",
-    "Humpback whales protect seals against orca attacks; they are one of the few species to have cross-species empathy.",
-    "Dolphins take drugs in the form of biting puffer fish.",
-    "I can solve a Rubik's cube in under 2 minutes.",
-    "I've read 50+ books on finance and technology.",
-    "I type at 90 WPM on a good day.",
-    "My first line of code was in BASIC on a Windows 98 machine.",
-];
-
-export const blogs = [
-    {
-        title: "Understanding Neural Networks",
-        excerpt: "A deep dive into the architecture and math behind neural networks.",
-        date: "2024-01-15",
-        link: "/blog/neural-networks",
-    },
-    {
-        title: "My Journey into Open Source",
-        excerpt: "How contributing to open source changed my career trajectory.",
-        date: "2023-11-20",
-        link: "/blog/open-source-journey",
-    },
-    {
-        title: "Building Scalable APIs with Django",
-        excerpt: "Best practices for designing and implementing RESTful APIs.",
-        date: "2023-09-10",
-        link: "/blog/django-apis",
-    },
-];
 
 export const navItems = [
     { name: "Home", link: "#home" },

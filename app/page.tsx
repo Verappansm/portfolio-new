@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Github, Linkedin, Instagram, Mail, ExternalLink, Code, Briefcase, User, ChevronRight, ArrowRight } from "lucide-react";
 
+import { cn } from "@/lib/utils";
 import { DotBackground } from "@/components/ui/dot-background";
 import { Timeline } from "@/components/ui/timeline";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
@@ -23,9 +24,6 @@ import {
   coreTechnologies,
   stats,
   certifications,
-  quotes,
-  randomFacts,
-  blogs,
   navItems,
   backgroundRoles,
 } from "@/lib/data";
@@ -305,12 +303,35 @@ function AboutSection() {
           Background
         </motion.h2>
 
-        <div className="max-w-6xl mx-auto mb-12 flex justify-center">
+        <div className="max-w-6xl mx-auto mb-12 flex flex-col items-center gap-3">
           <ExpandableTabs
             tabs={tabs}
             onChange={(index) => setActiveTab(index)}
             initialSelected={0}
           />
+          {/* Role discovery hint — shows all 3 roles as clickable pills */}
+          <div className="flex items-center gap-5">
+            {backgroundRoles.map((role, i) => (
+              <button
+                key={role.title}
+                onClick={() => setActiveTab(i)}
+                className={cn(
+                  "flex items-center gap-1.5 text-xs transition-all duration-200",
+                  activeTab === i
+                    ? "text-primary font-semibold"
+                    : "text-muted-foreground/50 hover:text-muted-foreground"
+                )}
+              >
+                <span
+                  className={cn(
+                    "w-1.5 h-1.5 rounded-full transition-colors duration-200",
+                    activeTab === i ? "bg-primary" : "bg-muted-foreground/30"
+                  )}
+                />
+                {role.title}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
@@ -466,46 +487,6 @@ function CertificationsSection() {
   );
 }
 
-// Blog Section
-function BlogSection() {
-  return (
-    <section id="blog" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center mb-16"
-        >
-          Blog
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {blogs.map((blog, i) => (
-            <motion.article
-              key={blog.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group"
-            >
-              <Link href={blog.link} className="block p-6 rounded-xl border bg-card hover:shadow-lg transition-all">
-                <time className="text-xs text-muted-foreground">{blog.date}</time>
-                <h3 className="text-xl font-bold mt-2 mb-3 group-hover:text-primary transition-colors">
-                  {blog.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">{blog.excerpt}</p>
-                <span className="inline-flex items-center mt-4 text-sm text-primary">
-                  Read more <ChevronRight className="w-4 h-4 ml-1" />
-                </span>
-              </Link>
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 
 // Main Page Component

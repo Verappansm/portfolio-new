@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\smlak\\\\desktop\\\\portfolio-new\" -Recurse -Force -File | Select-Object FullName | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\smlak\\\\desktop\\\\portfolio-new\\\\src\" -Recurse -Force | Select-Object FullName | ForEach-Object { $_.FullName } | Sort-Object)",
+      "PowerShell(tree *)",
+      "WebFetch(domain:21st.dev)",
+      "WebSearch",
+      "WebFetch(domain:www.hover.dev)",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\smlak\\\\desktop\\\\portfolio-new\\\\app\\\\more\\\\facts\")",
+      "WebFetch(domain:ui.aceternity.com)",
+      "Bash(npx next *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(p.dependencies.next\\)\")",
+      "Bash(npx tsc *)",
+      "WebFetch(domain:muz.li)",
+      "WebFetch(domain:blog.tubikstudio.com)"
+    ]
+  }
+}

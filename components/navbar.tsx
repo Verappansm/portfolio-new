@@ -1,40 +1,48 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Github, Linkedin, Instagram, Mail } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { profileData } from "@/lib/data";
-import { motion } from "framer-motion";
 
 export function Navbar({ className }: { className?: string }) {
     const [activeSection, setActiveSection] = useState("home");
+    const pathname = usePathname();
+    const raf = useRef<number | null>(null);
 
     useEffect(() => {
-        const sections = ["home", "experience", "projects", "about"];
-        const observerOptions = {
-            root: null,
-            rootMargin: "-20% 0px -70% 0px",
-            threshold: 0,
+        const sectionIds = ["home", "experience", "projects", "about"];
+
+        const update = () => {
+            const threshold = window.innerHeight * 0.5;
+            let found = sectionIds[0];
+            for (const id of sectionIds) {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top < threshold) {
+                    found = id;
+                }
+            }
+            setActiveSection(found);
         };
 
-        const observerCallback = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id);
-                }
+        // Throttle via rAF so we never run more than once per frame
+        const onScroll = () => {
+            if (raf.current !== null) return;
+            raf.current = requestAnimationFrame(() => {
+                update();
+                raf.current = null;
             });
         };
 
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-        sections.forEach((id) => {
-            const element = document.getElementById(id);
-            if (element) observer.observe(element);
-        });
-
-        return () => observer.disconnect();
+        document.addEventListener("scroll", onScroll, { passive: true });
+        update(); // set initial state
+        return () => {
+            document.removeEventListener("scroll", onScroll);
+            if (raf.current !== null) cancelAnimationFrame(raf.current);
+        };
     }, []);
 
     const navLinks = [
@@ -42,7 +50,14 @@ export function Navbar({ className }: { className?: string }) {
         { name: "Experience", href: "/#experience", id: "experience" },
         { name: "Projects", href: "/#projects", id: "projects" },
         { name: "About", href: "/#about", id: "about" },
+        { name: "More", href: "/more", id: "more" },
     ];
+
+    const isActive = (id: string) => {
+        if (id === "more") return pathname.startsWith("/more");
+        if (pathname.startsWith("/more")) return false;
+        return activeSection === id;
+    };
 
     return (
         <header
@@ -70,28 +85,22 @@ export function Navbar({ className }: { className?: string }) {
                                 key={link.id}
                                 href={link.href}
                                 className={cn(
-                                    "text-sm font-medium transition-colors relative group",
-                                    activeSection === link.id
+                                    "text-sm font-medium transition-colors relative pb-1",
+                                    isActive(link.id)
                                         ? "text-primary"
                                         : "text-muted-foreground hover:text-foreground"
                                 )}
                             >
                                 {link.name}
-                                {activeSection === link.id && (
-                                    <motion.div
-                                        layoutId="activeNav"
-                                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                                    />
-                                )}
+                                {/* Underline indicator — CSS transition, no Framer Motion */}
+                                <span
+                                    className={cn(
+                                        "absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full origin-left transition-transform duration-300",
+                                        isActive(link.id) ? "scale-x-100" : "scale-x-0"
+                                    )}
+                                />
                             </Link>
                         ))}
-                        <Link
-                            href="/more"
-                            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                            More
-                        </Link>
                     </nav>
 
                     {/* Right: Social Icons + Theme Toggle */}
