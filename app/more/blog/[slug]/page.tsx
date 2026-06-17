@@ -2,9 +2,23 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Calendar, ArrowRight } from "lucide-react";
 import { blogs } from "@/lib/more-data";
+import ScrollToTop from "./scroll-to-top";
 
 export function generateStaticParams() {
     return blogs.map((b) => ({ slug: b.slug }));
+}
+
+function renderInline(text: string) {
+    const parts = text.split(/(\*\*[^*]+\*\*|_[^_]+_)/g);
+    return parts.map((part, i) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+            return <strong key={i} className="font-semibold text-foreground/90">{part.slice(2, -2)}</strong>;
+        }
+        if (part.startsWith("_") && part.endsWith("_")) {
+            return <em key={i} className="italic">{part.slice(1, -1)}</em>;
+        }
+        return <span key={i}>{part}</span>;
+    });
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -18,6 +32,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
     return (
         <main className="min-h-screen py-20">
+            <ScrollToTop />
             <div className="container mx-auto px-6 max-w-3xl">
 
                 {/* Back link */}
@@ -50,22 +65,48 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         {blog.excerpt}
                     </p>
 
+                    {"link" in blog && blog.link && (
+                        <a
+                            href={blog.link as string}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 mt-5 text-xs text-muted-foreground/60 hover:text-primary transition-colors"
+                        >
+                            Originally published on Medium ↗
+                        </a>
+                    )}
+
                     <div className="h-px bg-border mt-8" />
                 </header>
 
                 {/* Article body */}
-                <article className="space-y-5">
+                <article className="space-y-4">
                     {blog.content.map((block, i) => {
                         if (block.type === "heading") {
                             return (
-                                <h2 key={i} className="text-xl md:text-2xl font-bold tracking-tight mt-10 mb-2 first:mt-0">
-                                    {block.text}
+                                <h2 key={i} className="text-xl md:text-2xl font-bold tracking-tight mt-10 mb-1 first:mt-0">
+                                    {renderInline(block.text)}
                                 </h2>
+                            );
+                        }
+                        if (block.type === "subheading") {
+                            return (
+                                <h3 key={i} className="text-base md:text-lg font-semibold tracking-tight mt-7 mb-1">
+                                    {renderInline(block.text)}
+                                </h3>
+                            );
+                        }
+                        if (block.type === "listItem") {
+                            return (
+                                <div key={i} className="flex gap-3 pl-2">
+                                    <span className="text-muted-foreground/40 shrink-0 mt-1.5 text-xs select-none">—</span>
+                                    <p className="text-base text-foreground/75 leading-loose">{renderInline(block.text)}</p>
+                                </div>
                             );
                         }
                         return (
                             <p key={i} className="text-base text-foreground/75 leading-loose">
-                                {block.text}
+                                {renderInline(block.text)}
                             </p>
                         );
                     })}

@@ -128,7 +128,7 @@ export default function QuotesPage() {
                     )}
 
                     {/* Cards — masonry columns */}
-                    <div className="relative z-10 columns-2 md:columns-3 lg:columns-4 gap-3">
+                    <div className="relative z-10 columns-2 md:columns-3 gap-3">
                         {quotes.map((q, i) => (
                             <motion.div
                                 key={i}
@@ -149,7 +149,7 @@ export default function QuotesPage() {
                                     </span>
 
                                     {/* Quote text */}
-                                    <p className="text-xs leading-relaxed text-foreground/75 mb-2.5">
+                                    <p className="text-sm leading-relaxed text-foreground/75 mb-2.5">
                                         {q.text}
                                     </p>
 
