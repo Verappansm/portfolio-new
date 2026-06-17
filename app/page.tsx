@@ -46,18 +46,24 @@ function HeroSection() {
         <div className="container mx-auto px-4 py-20 lg:py-32">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             {/* Left: Text Content */}
-            <div className="flex-1 text-center lg:text-left">
+            <div className="flex-1 lg:flex-[3] text-center lg:text-left">
+
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.05 }}
+                className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground/50 mb-4"
+              >
+                — hey, I'm
+              </motion.p>
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
+                className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-foreground"
               >
-                This is{" "}
-                <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent">
-                  {profileData.name}
-                </span>
+                {profileData.name}
               </motion.h1>
 
               {/* Animated Role */}
@@ -78,9 +84,18 @@ function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8"
+                className="text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-4"
               >
                 {profileData.bio}
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.45 }}
+                className="text-sm text-muted-foreground/50 italic max-w-2xl mx-auto lg:mx-0 mb-8"
+              >
+                Friendly neighbourhood engineer who does Whatever it takes.
               </motion.p>
 
             </div>
@@ -90,10 +105,10 @@ function HeroSection() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex-1 flex flex-col items-center"
+              className="flex-1 lg:flex-[2] flex flex-col items-center lg:items-end"
             >
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 rounded-full blur-2xl opacity-30 animate-pulse" />
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 group">
+                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl opacity-50 animate-pulse" />
                 <Image
                   src={profileData.avatarSrc}
                   alt={profileData.name}
@@ -101,6 +116,11 @@ function HeroSection() {
                   className="rounded-full object-cover border-4 border-background shadow-2xl relative z-10"
                   priority
                 />
+                <div className="absolute top-1/2 -translate-y-1/2 right-full mr-4 z-20 pointer-events-none opacity-0 group-hover:opacity-100 translate-x-1 group-hover:translate-x-0 transition-all duration-200">
+                  <span className="whitespace-nowrap text-xs font-mono text-muted-foreground/70 italic bg-card/90 backdrop-blur-sm border border-border/40 px-3 py-1.5 rounded-full shadow-sm">
+                    One of the better variants.
+                  </span>
+                </div>
               </div>
               <p className="mt-6 text-sm text-muted-foreground italic text-center max-w-sm">
                 {profileData.motto}

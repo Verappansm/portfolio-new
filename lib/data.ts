@@ -6,7 +6,7 @@ export const profileData = {
     avatarFallback: "VP",
     location: "India",
     motto: "\"The only history that is worth a damn is the history we make today.\" — Henry Ford",
-    bio: "Software Developer, Business Analyst, and AI Engineer with a passion for building impactful solutions.",
+    bio: "Full-stack engineer with a business analyst's instinct. I've shipped enterprise code at Fidelity, built AI-powered systems and delivered products that solve real problems. I move between the code, the product and the room — comfortably.",
     roles: ["Software Developer", "Business Analyst", "AI Engineer"],
     socials: {
         linkedin: "https://www.linkedin.com/in/verappansm/",

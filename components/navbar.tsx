@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Github, Linkedin, Instagram, Mail } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -69,14 +70,26 @@ export function Navbar({ className }: { className?: string }) {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     {/* Left: Logo + Name */}
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
-                            V
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="w-[34px] h-[34px] rounded-xl overflow-hidden shrink-0 ring-1 ring-border/30 group-hover:ring-primary/40 transition-all duration-200">
+                            <Image
+                                src="/logo.png"
+                                alt="Verappan logo"
+                                width={34}
+                                height={34}
+                                className="w-full h-full object-cover invert dark:invert-0"
+                                priority
+                            />
                         </div>
-                        <Link href="/" className="font-semibold text-lg hover:text-primary transition-colors">
-                            {profileData.name}
-                        </Link>
-                    </div>
+                        <Image
+                            src="/name.png"
+                            alt="Verappan"
+                            width={190}
+                            height={38}
+                            className="h-[38px] w-auto object-contain invert dark:invert-0 opacity-75 group-hover:opacity-100 transition-opacity duration-200"
+                            priority
+                        />
+                    </Link>
 
                     {/* Center: Navigation Links */}
                     <nav className="hidden md:flex items-center gap-6">
