@@ -25,7 +25,6 @@ import { DotBackground } from "@/components/ui/dot-background";
 import { Timeline } from "@/components/ui/timeline";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { ExpandableTabs } from "@/components/ui/expandable-tabs";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import type { LiveStats } from "@/lib/stats-server";
@@ -35,7 +34,6 @@ import {
   workExperience,
   positionsOfResponsibility,
   projects,
-  certifications,
   backgroundRoles,
   research,
 } from "@/lib/data";
@@ -200,21 +198,22 @@ function ExperienceSection() {
   return (
     <section id="experience" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center mb-8">
+        <div className="max-w-6xl mx-auto flex flex-col items-center md:items-start mb-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-center mb-8"
+            className="text-2xl md:text-4xl font-semibold tracking-tight text-center md:text-left mb-12"
           >
             Experience
           </motion.h2>
 
           {/* Toggle Switch */}
-          <div className="flex bg-muted/50 p-1 rounded-full border border-border">
+          <div className="relative flex bg-muted/50 p-1 rounded-full border border-border">
+            <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} />
             <button
               onClick={() => setActiveTab("work")}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === "work"
+              className={`relative z-10 px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === "work"
                 ? "bg-background text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
                 }`}
@@ -223,7 +222,7 @@ function ExperienceSection() {
             </button>
             <button
               onClick={() => setActiveTab("positions")}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === "positions"
+              className={`relative z-10 px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === "positions"
                 ? "bg-background text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
                 }`}
@@ -233,7 +232,7 @@ function ExperienceSection() {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative max-w-6xl mx-auto">
           <Timeline data={timelineData} />
         </div>
       </div>
@@ -247,15 +246,17 @@ function ProjectsSection() {
   return (
     <section id="projects" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center mb-16"
-        >
-          Projects
-        </motion.h2>
-        <BentoGrid className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-4xl font-semibold tracking-tight text-center md:text-left mb-12"
+          >
+            Projects
+          </motion.h2>
+        </div>
+        <BentoGrid className="max-w-6xl mx-auto">
           {projects.map((project, i) => (
             <BentoGridItem
               key={i}
@@ -294,7 +295,7 @@ function ProjectsSection() {
         </BentoGrid>
 
         {/* More Projects Link - Aligned with the Bento Grid */}
-        <div className="max-w-5xl mx-auto mt-8 flex justify-end">
+        <div className="max-w-6xl mx-auto mt-8 flex justify-end">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -326,41 +327,33 @@ function AboutSection() {
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center mb-16"
-        >
-          Background
-        </motion.h2>
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-4xl font-semibold tracking-tight text-center md:text-left mb-12"
+          >
+            Background
+          </motion.h2>
+        </div>
 
-        <div className="max-w-6xl mx-auto mb-12 flex flex-col items-center gap-3">
-          <ExpandableTabs
-            tabs={tabs}
-            onChange={(index) => setActiveTab(index)}
-            initialSelected={0}
-          />
-          {/* Role discovery hint — shows all 3 roles as clickable pills */}
-          <div className="flex items-center gap-5">
-            {backgroundRoles.map((role, i) => (
+        <div className="max-w-6xl mx-auto mb-12 flex justify-center md:justify-start">
+          <div className="relative flex items-center gap-2 p-1.5 rounded-2xl border bg-background shadow-sm">
+            <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} />
+            {tabs.map((tab, i) => (
               <button
-                key={role.title}
+                key={tab.title}
                 onClick={() => setActiveTab(i)}
                 className={cn(
-                  "flex items-center gap-1.5 text-xs transition-all duration-200",
+                  "relative z-10 flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200",
                   activeTab === i
-                    ? "text-primary font-semibold"
-                    : "text-muted-foreground/50 hover:text-muted-foreground"
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
-                <span
-                  className={cn(
-                    "w-1.5 h-1.5 rounded-full transition-colors duration-200",
-                    activeTab === i ? "bg-primary" : "bg-muted-foreground/30"
-                  )}
-                />
-                {role.title}
+                <tab.icon className="w-4 h-4" />
+                {tab.title}
               </button>
             ))}
           </div>
@@ -530,16 +523,18 @@ function StatsSection({ stats }: { stats: LiveStats }) {
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center mb-16"
-        >
-          Stats & Achievements
-        </motion.h2>
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-4xl font-semibold tracking-tight text-center md:text-left mb-12"
+          >
+            Stats & Achievements
+          </motion.h2>
+        </div>
 
-        <div className="max-w-5xl mx-auto space-y-4">
+        <div className="max-w-6xl mx-auto space-y-4">
           {/* Row 1 — live, ticking stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* GitHub — wide */}
@@ -727,40 +722,6 @@ function StatsSection({ stats }: { stats: LiveStats }) {
               </div>
             </motion.div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Certifications Section
-function CertificationsSection() {
-  return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center mb-16"
-        >
-          Certifications
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-          {certifications.map((cert, i) => (
-            <motion.div
-              key={cert.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow"
-            >
-              <h3 className="font-semibold mb-2">{cert.name}</h3>
-              <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-              <p className="text-xs text-muted-foreground/60">{cert.year}</p>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>
