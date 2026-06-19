@@ -283,14 +283,21 @@ export const coreTechnologies = [
     "MySQL", "MongoDB", "Docker", "Git"
 ];
 
-export const stats = [
-    { name: "GitHub", value: "200+", label: "Contributions" },
-    { name: "LeetCode", value: "150+", label: "Problems Solved" },
-    { name: "CodeChef", value: "3★", label: "Rating" },
-    { name: "Kaggle", value: "Expert", label: "Tier" },
-    { name: "Medium", value: "5+", label: "Articles" },
-    { name: "Monkeytype", value: "90 WPM", label: "Typing Speed" },
-];
+export const research = {
+    paper: {
+        title: "Tower field construction of power attack resistant 4 × 4 substitutions in lightweight SPN ciphers for implantable medical devices",
+        journal: "Alexandria Engineering Journal (Elsevier)",
+        badges: ["Q1 Journal", "IF 6.8", "CiteScore 11.2"],
+        link: "https://www.sciencedirect.com/science/article/pii/S1110016825008531",
+        underReview: 3,
+    },
+    patent: {
+        title: "Smart liquid agent monitoring system over an ESP Mesh network",
+        id: "202441079988",
+        badges: ["IoT System", "SDG 3 & 9", "VIT Chennai Funded"],
+        statusLink: "https://iprsearch.ipindia.gov.in/PublicSearch/PublicationSearch/ApplicationStatus",
+    },
+};
 
 export const certifications = [
     { name: "AWS Cloud Practitioner", issuer: "Amazon Web Services", year: "2024" },
