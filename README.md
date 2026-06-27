@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Verappan S M
+
+Personal portfolio built with Next.js 16 App Router. Features live stats pulled daily from GitHub, LeetCode, Monkeytype, and Medium; an interactive location map; a blog, poetry collection, and quotes — alongside work experience, projects, and research.
+
+## Sections
+
+- **Home** — animated hero, role carousel, live stats (GitHub contributions, LeetCode, Monkeytype WPM, Medium articles), research highlights
+- **Experience** — work history and positions of responsibility via an animated timeline
+- **Projects** — uniform grid of 11 projects with GitHub and live links
+- **About** — persona tabs (Software Developer / Business Analyst / AI Engineer) with per-role tech stack and certifications
+- **More** — blog (individual post pages), poems (book-flip UI), quotes (constellation grid)
+
+## Tech Stack
+
+- **Framework**: Next.js 16.1.1 (App Router), React 19, TypeScript
+- **Styling**: Tailwind CSS v4, `tailwind-merge`, `class-variance-authority`
+- **Animation**: Framer Motion, GSAP (`@gsap/react`)
+- **Map**: Leaflet.js via `react-leaflet` (OpenStreetMap + CartoDB tiles, no API key required)
+- **UI**: Radix UI, `lucide-react`, custom Aceternity-style component library (`components/ui/`) — bento grid, timeline, glowing effects, dot background, floating navbar
+- **Theming**: `next-themes` (dark / light / system)
+
+## Live Stats
+
+Stats are fetched server-side once per day via Next.js ISR (`revalidate: 86400`):
+
+| Source | Data |
+|---|---|
+| GitHub (jogruber API) | Last-year contributions, all-time total, heatmap |
+| LeetCode (leetcode-stats-api) | Problems solved, ranking |
+| Monkeytype (official API) | Best 30s WPM, accuracy |
+| Medium (RSS feed) | Article count, latest post |
+
+### Environment Variables
+
+Create `.env.local` in the project root:
+
+```
+MONKEYTYPE_APE_KEY=your_ape_key_here
+```
+
+Add the same variable in Vercel project settings → Environment Variables for production.
+
+## Project Structure
+
+```
+app/
+  page.tsx                  Home (server component — fetches live stats)
+  layout.tsx                Root layout with navbar
+  more/
+    page.tsx                More landing (blog / poems / quotes cards)
+    blog/page.tsx           Blog listing
+    blog/[slug]/page.tsx    Individual blog post
+    poems/page.tsx          Poems (book-flip interaction)
+    quotes/page.tsx         Quotes (constellation + marquee)
+components/
+  home-client.tsx           Main client component (all home page sections)
+  navbar.tsx                Floating navbar with logo and name images
+  footer.tsx                Footer with map modal, socials, scroll-to-top
+  map-modal.tsx             Interactive location map modal (Leaflet)
+  leaflet-map.tsx           Leaflet map with custom emoji markers
+  scroll-to-top-button.tsx  Footer scroll-to-top button
+  ui/                       Reusable animated UI components
+lib/
+  data.ts                   Profile, experience, projects, tech stack, research
+  more-data.ts              Blog articles, poems, quotes
+  stats-server.ts           Server-side daily stats fetcher
+  utils.ts                  Shared utilities
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Add `MONKEYTYPE_APE_KEY` to `.env.local` for live typing stats.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm run start
+```

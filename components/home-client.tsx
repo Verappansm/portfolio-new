@@ -243,6 +243,9 @@ function ExperienceSection() {
 
 // Projects Section
 function ProjectsSection() {
+  const FEATURED = ["amber", "cgpacalc", "github-profile-builder", "database-retriever"];
+  const featured = projects.filter((p) => FEATURED.includes(p.slug));
+
   return (
     <section id="projects" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -257,9 +260,9 @@ function ProjectsSection() {
           </motion.h2>
         </div>
         <BentoGrid className="max-w-6xl mx-auto">
-          {projects.map((project, i) => (
+          {featured.map((project, i) => (
             <BentoGridItem
-              key={i}
+              key={project.slug}
               title={project.title}
               description={project.description}
               className={i === 0 || i === 3 ? "md:col-span-2" : ""}
@@ -275,14 +278,14 @@ function ProjectsSection() {
               icon={
                 <div className="flex gap-2 mt-4">
                   {project.github && (
-                    <Link href={project.github} target="_blank">
+                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
                       <Button variant="outline" size="sm">
                         <Github className="w-4 h-4 mr-1" /> GitHub
                       </Button>
                     </Link>
                   )}
                   {project.live && (
-                    <Link href={project.live} target="_blank">
+                    <Link href={project.live} target="_blank" rel="noopener noreferrer">
                       <Button size="sm">
                         <ExternalLink className="w-4 h-4 mr-1" /> Live
                       </Button>
@@ -294,7 +297,6 @@ function ProjectsSection() {
           ))}
         </BentoGrid>
 
-        {/* More Projects Link - Aligned with the Bento Grid */}
         <div className="max-w-6xl mx-auto mt-8 flex justify-end">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

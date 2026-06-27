@@ -222,45 +222,161 @@ export const positionsOfResponsibility = [
     },
 ];
 
+// status — WHY/CONTEXT of the project (point 3):
+//   "live"         → deployed and publicly accessible
+//   "internship"   → built during a professional internship
+//   "r&d"          → research & development / experimental
+//   "study"        → learning project, built to understand a concept
+//   "university"   → academic coursework or university club/event project
+//   "hackathon"    → built during a hackathon or tech fest
+//   "clone"        → intentional replication of an existing product to learn
+//   "side-project" → personal initiative outside work or university
+//   "freelance"    → commissioned / client work
+
+// category — WHAT TYPE of project it is (point 4):
+//   "full-stack"   → end-to-end web application (frontend + backend)
+//   "gen-ai"       → generative AI / LLM-powered application
+//   "ai-agent"     → autonomous AI system with tools/actions/memory
+//   "ml-pipeline"  → machine learning model training + inference pipeline
+//   "frontend"     → primarily UI/browser-side, no significant backend
+//   "backend"      → API, microservice, or database-heavy, minimal frontend
+//   "cli-tool"     → command-line interface tool
+//   "automation"   → scripting, workflow, or process automation
+//   "data-science" → data analysis, visualization, statistical modelling
+//   "mobile"       → iOS / Android / React Native app
+//   "chrome-ext"   → browser extension
+
 export const projects = [
     {
-        slug: "day-planner",
-        title: "Collaborative Day Planner",
-        description: "A collaborative AI-enabled day out planner.",
-        fullDescription: "Built with Next.js 16 and TypeScript, this collaborative AI-enabled day out planner helps groups create itineraries seamlessly. It features real-time collaboration and intelligent pathing for a perfect day out.",
+        slug: "amber",
+        title: "Amber — Day Planner",
+        description: "AI-powered collaborative day-out planner with real-time itinerary building for groups.",
+        fullDescription: "Built with Next.js 16 and TypeScript, Amber is a collaborative AI-enabled day-out planner that helps groups create itineraries seamlessly. Features real-time collaboration and intelligent pathing.",
         date: "Feb 2025",
+        status: "live",
+        category: "full-stack",
         techStack: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
         github: "https://github.com/Verappansm/day-planner",
-        live: null,
+        live: "https://day-planner-amber.vercel.app/",
     },
     {
         slug: "fidelity-leap-springboot",
-        title: "Fidelity Leap - Money Transfer",
-        description: "A money transfer system built in Spring Boot.",
+        title: "Fidelity Leap — Money Transfer",
+        description: "Secure money-transfer system with transaction handling, JPA persistence, and modular architecture.",
         fullDescription: "A robust money transfer system developed as a capstone project. Built with Spring Boot 3.5, Java 17, and MySQL, it implements secure transaction handling, JPA for data persistence, and a modular architecture for scalability.",
         date: "Feb 2025",
+        status: "internship",
+        category: "full-stack",
         techStack: ["Java", "Spring Boot", "MySQL", "JPA", "Maven"],
         github: "https://github.com/Verappansm/Fidelity-leap-springboot",
         live: null,
     },
     {
-        slug: "readme-generator",
-        title: "Interactive README Generator",
-        description: "A GitHub README generator with an interactive interface.",
-        fullDescription: "An interactive tool designed to simplify the process of creating high-quality GitHub README files. Built using HTML, CSS, and JavaScript, it provides a user-friendly interface for generating well-structured documentation.",
-        date: "Jan 2025",
-        techStack: ["HTML", "CSS", "JavaScript"],
-        github: "https://github.com/Verappansm/readme_generator",
+        slug: "fraud-analyzer",
+        title: "Fraud Analyzer",
+        description: "ML-based transaction fraud detection with anomaly scoring and feature analysis.",
+        fullDescription: "A machine learning pipeline for identifying fraudulent transactions. Uses feature engineering, anomaly detection, and classification models to flag suspicious activity with interpretable scoring.",
+        date: "2024",
+        status: "r&d",
+        category: "ml-pipeline",
+        techStack: ["Python", "scikit-learn", "Pandas", "NumPy"],
+        github: "https://github.com/Verappansm/fraud-analyzer",
         live: null,
+    },
+    {
+        slug: "cgpacalc",
+        title: "VIT GPA Calculator",
+        description: "GPA and CGPA calculator for VIT students with grade mapping and semester tracking.",
+        fullDescription: "A web-based GPA and CGPA calculator built specifically for VIT students. Supports VIT's grading schema, multi-semester tracking, and instant calculations.",
+        date: "2024",
+        status: "live",
+        category: "frontend",
+        techStack: ["JavaScript", "HTML", "CSS"],
+        github: "https://github.com/Verappansm/cgpacalc",
+        live: "https://vitgpacal.vercel.app/",
+    },
+    {
+        slug: "uniday",
+        title: "Uniday",
+        description: "University schedule manager for planning classes, tasks, and academic deadlines.",
+        fullDescription: "A university day management app that helps students organise classes, assignments, and deadlines in one place. Built for clarity and speed.",
+        date: "2024",
+        status: "university",
+        category: "full-stack",
+        techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+        github: "https://github.com/Verappansm/uniday",
+        live: "https://testing-uniday.vercel.app/",
     },
     {
         slug: "database-retriever",
         title: "AI Database Retriever",
-        description: "An AI database retriever that handles natural language queries without leaking data.",
-        fullDescription: "A privacy-first SQL query generator using LangChain and Streamlit. It allows users to query databases using natural language or voice commands by only sharing the schema with the LLM, ensuring sensitive data remains secure.",
+        description: "Privacy-first natural language SQL tool — only the schema is shared with the LLM, never the data.",
+        fullDescription: "A privacy-first SQL query generator using LangChain and Streamlit. It allows users to query databases using natural language by only sharing the schema with the LLM, ensuring sensitive data remains secure.",
         date: "Nov 2024",
+        status: "r&d",
+        category: "gen-ai",
         techStack: ["Python", "LangChain", "Streamlit", "SQLAlchemy", "PostgreSQL"],
         github: "https://github.com/Verappansm/Database_retriever",
+        live: null,
+    },
+    {
+        slug: "github-profile-builder",
+        title: "GitHub Profile Builder",
+        description: "Interactive GitHub profile README generator with live preview and one-click export.",
+        fullDescription: "A browser-based tool to generate polished GitHub profile READMEs. Choose sections, fill in details, and copy the markdown instantly.",
+        date: "2024",
+        status: "live",
+        category: "frontend",
+        techStack: ["HTML", "CSS", "JavaScript"],
+        github: "https://github.com/Verappansm/GitHub_Profile_Builder",
+        live: "https://ghprofilebuilder.vercel.app/",
+    },
+    {
+        slug: "portfolio-generator",
+        title: "Portfolio Generator",
+        description: "Configurable portfolio template generator with section and theme customization.",
+        fullDescription: "A portfolio generator that lets users configure sections, swap themes, and export a ready-to-deploy personal portfolio site.",
+        date: "2024",
+        status: "side-project",
+        category: "frontend",
+        techStack: ["HTML", "CSS", "JavaScript"],
+        github: "https://github.com/Verappansm/Verappansm_portfolio",
+        live: null,
+    },
+    {
+        slug: "hr-mail-assistant",
+        title: "HR Mail Assistant",
+        description: "LangChain-powered assistant that drafts, refines, and organises HR email correspondence.",
+        fullDescription: "A B2B productivity tool built with LangChain and GPT-3.5. Drafts, refines, and categorises HR emails based on context, saving hours of manual correspondence.",
+        date: "Jul 2024",
+        status: "r&d",
+        category: "gen-ai",
+        techStack: ["Python", "LangChain", "OpenAI", "Streamlit"],
+        github: "https://github.com/Verappansm/Langchain_based_HR_MAIL_Assistant",
+        live: null,
+    },
+    {
+        slug: "reddit-clone",
+        title: "Reddit Clone — Django REST",
+        description: "Reddit-style community platform with posts, comments, and voting via Django REST Framework.",
+        fullDescription: "A full-stack Reddit clone built with Django REST Framework. Supports subreddits, post creation, threaded comments, and upvote/downvote mechanics.",
+        date: "2024",
+        status: "study",
+        category: "full-stack",
+        techStack: ["Python", "Django", "Django REST", "SQLite"],
+        github: "https://github.com/Verappansm/django_rest_api_redditclone",
+        live: null,
+    },
+    {
+        slug: "technovit-chatbot",
+        title: "TechnoVIT '25 Chatbot",
+        description: "AI chatbot for TechnoVIT 2025, answering event FAQs and guiding participants in real time.",
+        fullDescription: "An AI chatbot deployed for TechnoVIT 2025, VIT Chennai's flagship technical fest. Handles participant queries, event schedules, and registration guidance.",
+        date: "2025",
+        status: "university",
+        category: "gen-ai",
+        techStack: ["Python", "LangChain", "FastAPI"],
+        github: "https://github.com/Verappansm/technovit25-chatbot",
         live: null,
     },
 ];
