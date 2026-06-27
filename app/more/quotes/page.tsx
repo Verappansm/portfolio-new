@@ -5,11 +5,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { quotes } from "@/lib/more-data";
+import { Footer } from "@/components/footer";
 
 /* ── Constellation connections ──────────────────────────────────────────── */
 type Pos = { x: number; y: number };
 
-/* Deterministic star connections: each node connects to a few non-adjacent others */
 function buildConnections(n: number): [number, number][] {
     const seen = new Set<string>();
     const pairs: [number, number][] = [];
@@ -33,7 +33,7 @@ const CONNECTIONS = buildConnections(quotes.length);
 function QuoteMarquee() {
     const doubled = [...quotes, ...quotes];
     return (
-        <div className="overflow-hidden border-y border-border/40 py-3 bg-muted/10 mb-12">
+        <div className="overflow-hidden border-y border-border/40 py-3 bg-muted/10 mb-10">
             <div className="animate-marquee-scroll" style={{ display: "flex", width: "max-content", gap: "3rem" }}>
                 {doubled.map((q, i) => (
                     <span key={i} className="shrink-0 flex items-center gap-2 text-xs text-muted-foreground/40 italic">
@@ -81,88 +81,81 @@ export default function QuotesPage() {
     }, []);
 
     return (
-        <main className="min-h-screen py-16">
-            <div className="container mx-auto px-6">
-                <Link
-                    href="/more"
-                    className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-10 transition-colors text-sm"
-                >
-                    <ArrowLeft className="h-4 w-4" />
-                    Back to More
-                </Link>
+        <>
+            <main className="py-10">
+                {/* Heading shares the same container as the grid so left edges align */}
+                <div className="container mx-auto px-4 max-w-screen-xl">
+                    <Link
+                        href="/more"
+                        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors text-sm"
+                    >
+                        <ArrowLeft className="h-4 w-4" />
+                        Back to More
+                    </Link>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14">
-                    <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-3">Quotes</h1>
-                    <p className="text-muted-foreground text-base max-w-lg leading-relaxed">
-                        Words I keep coming back to. The ones that changed how I think.
-                    </p>
-                </motion.div>
-            </div>
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
+                        <h1 className="text-2xl md:text-4xl font-semibold tracking-tight mb-2">Quotes</h1>
+                        <p className="text-muted-foreground text-sm max-w-lg leading-relaxed">
+                            Words I keep coming back to. The ones that changed how I think.
+                        </p>
+                    </motion.div>
+                </div>
 
-            <QuoteMarquee />
+                <QuoteMarquee />
 
-            {/* Constellation grid */}
-            <div className="container mx-auto px-4 max-w-screen-xl">
-                <div className="relative" ref={containerRef}>
-
-                    {/* SVG constellation lines — rendered after card positions are measured */}
-                    {lines.length > 0 && (
-                        <svg
-                            className="absolute inset-0 w-full pointer-events-none"
-                            style={{ height: containerH, zIndex: 0 }}
-                            aria-hidden
-                        >
-                            {lines.map(([a, b], i) => (
-                                <line
-                                    key={i}
-                                    x1={a.x} y1={a.y}
-                                    x2={b.x} y2={b.y}
-                                    stroke="currentColor"
-                                    strokeWidth="0.75"
-                                    strokeOpacity="0.14"
-                                    className="text-primary"
-                                    strokeLinecap="round"
-                                />
-                            ))}
-                        </svg>
-                    )}
-
-                    {/* Cards — masonry columns */}
-                    <div className="relative z-10 columns-2 md:columns-3 gap-3">
-                        {quotes.map((q, i) => (
-                            <motion.div
-                                key={i}
-                                ref={el => { cardRefs.current[i] = el as HTMLDivElement | null; }}
-                                className="break-inside-avoid mb-3"
-                                initial={{ opacity: 0, y: 8 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-20px" }}
-                                transition={{ duration: 0.4, delay: (i % 12) * 0.03 }}
+                <div className="container mx-auto px-4 max-w-screen-xl">
+                    <div className="relative" ref={containerRef}>
+                        {lines.length > 0 && (
+                            <svg
+                                className="absolute inset-0 w-full pointer-events-none"
+                                style={{ height: containerH, zIndex: 0 }}
+                                aria-hidden
                             >
-                                <div className="relative rounded-xl border border-border/35 bg-card/50 px-4 py-3.5 hover:border-primary/25 hover:bg-card/80 transition-all duration-200 group">
-                                    {/* Star dot */}
-                                    <div className="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] rounded-full bg-primary/25 group-hover:bg-primary/50 transition-colors" />
+                                {lines.map(([a, b], i) => (
+                                    <line
+                                        key={i}
+                                        x1={a.x} y1={a.y}
+                                        x2={b.x} y2={b.y}
+                                        stroke="currentColor"
+                                        strokeWidth="0.75"
+                                        strokeOpacity="0.14"
+                                        className="text-primary"
+                                        strokeLinecap="round"
+                                    />
+                                ))}
+                            </svg>
+                        )}
 
-                                    {/* Ordinal */}
-                                    <span className="text-[9px] font-mono text-muted-foreground/25 block mb-1.5 leading-none">
-                                        {String(i + 1).padStart(2, "0")}
-                                    </span>
-
-                                    {/* Quote text */}
-                                    <p className="text-sm leading-relaxed text-foreground/75 mb-2.5">
-                                        {q.text}
-                                    </p>
-
-                                    {/* Author */}
-                                    <span className="text-[10px] text-muted-foreground/45 italic">
-                                        — {q.author}
-                                    </span>
-                                </div>
-                            </motion.div>
-                        ))}
+                        <div className="relative z-10 columns-2 md:columns-3 gap-3">
+                            {quotes.map((q, i) => (
+                                <motion.div
+                                    key={i}
+                                    ref={el => { cardRefs.current[i] = el as HTMLDivElement | null; }}
+                                    className="break-inside-avoid mb-3"
+                                    initial={{ opacity: 0, y: 8 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-20px" }}
+                                    transition={{ duration: 0.4, delay: (i % 12) * 0.03 }}
+                                >
+                                    <div className="relative rounded-xl border border-border/35 bg-card/50 px-4 py-3.5 hover:border-primary/25 hover:bg-card/80 transition-all duration-200 group">
+                                        <div className="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] rounded-full bg-primary/25 group-hover:bg-primary/50 transition-colors" />
+                                        <span className="text-[9px] font-mono text-muted-foreground/25 block mb-1.5 leading-none">
+                                            {String(i + 1).padStart(2, "0")}
+                                        </span>
+                                        <p className="text-sm leading-relaxed text-foreground/75 mb-2.5">
+                                            {q.text}
+                                        </p>
+                                        <span className="text-[10px] text-muted-foreground/45 italic">
+                                            — {q.author}
+                                        </span>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+            <Footer />
+        </>
     );
 }

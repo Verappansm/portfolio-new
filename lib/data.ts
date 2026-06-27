@@ -312,7 +312,6 @@ export const navItems = [
     { name: "Experience", link: "#experience" },
     { name: "Projects", link: "#projects" },
     { name: "About", link: "#about" },
-    { name: "Blog", link: "#blog" },
 ];
 
 export const backgroundRoles = [

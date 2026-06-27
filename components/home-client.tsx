@@ -731,12 +731,22 @@ function StatsSection({ stats }: { stats: LiveStats }) {
 // Main Client Component — receives daily-cached live stats from the server page
 export function HomeClient({ stats }: { stats: LiveStats }) {
   return (
-    <main className="min-h-screen">
+    <main>
       <HeroSection />
       <ExperienceSection />
       <ProjectsSection />
       <AboutSection />
       <StatsSection stats={stats} />
+
+      {/* More page nudge */}
+      <p className="text-center text-sm tracking-widest text-muted-foreground/60 py-6">
+        there&apos;s always{" "}
+        <Link href="/more" className="text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4">
+          /more
+        </Link>
+        . click for post-credits
+      </p>
+
       <Footer />
     </main>
   );
