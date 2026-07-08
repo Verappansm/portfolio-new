@@ -269,7 +269,7 @@ function ProjectsSection() {
               header={
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.techStack.map((tech) => (
-                    <span key={tech} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary">
+                    <span key={tech} className="px-2 py-1 text-xs rounded-full bg-muted text-muted-foreground/70">
                       {tech}
                     </span>
                   ))}
@@ -286,7 +286,7 @@ function ProjectsSection() {
                   )}
                   {project.live && (
                     <Link href={project.live} target="_blank" rel="noopener noreferrer">
-                      <Button size="sm">
+                      <Button variant="outline" size="sm" className="hover:border-primary hover:text-primary transition-colors">
                         <ExternalLink className="w-4 h-4 mr-1" /> Live
                       </Button>
                     </Link>
@@ -370,7 +370,7 @@ function AboutSection() {
             className="space-y-6"
           >
             <div className="space-y-4">
-              <p className="text-xl font-semibold text-primary">
+              <p className="text-xl font-semibold text-foreground">
                 {activeRole.subtitle}
               </p>
               <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
