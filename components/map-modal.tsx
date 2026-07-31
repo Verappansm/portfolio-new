@@ -17,16 +17,37 @@ const LeafletMap = dynamic(() => import("@/components/leaflet-map"), {
 export function MapModal() {
     const [open, setOpen] = useState(false);
     const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
 
     return (
         <>
             <button
                 onClick={() => setOpen(true)}
-                className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Open map"
+                className="group relative w-8 h-8 rounded-full overflow-hidden border border-border hover:border-foreground/40 hover:scale-110 transition-all shrink-0"
+                aria-label="Open map of Verappan's world"
+                title="My world — open map"
             >
-                <MapPin className="w-3.5 h-3.5" />
-                My World
+                <svg viewBox="0 0 32 32" className="w-full h-full" aria-hidden="true">
+                    <rect width="32" height="32" fill={isDark ? "#182226" : "#e2edf1"} />
+                    <path
+                        d="M0 11 H32 M0 21 H32 M11 0 V32 M21 0 V32"
+                        stroke={isDark ? "#33454c" : "#bcd3db"}
+                        strokeWidth="1"
+                    />
+                    <path
+                        d="M1 27 L13 15 L20 23 L31 5"
+                        stroke={isDark ? "#5b7f8c" : "#8fb0bd"}
+                        strokeWidth="1.5"
+                        fill="none"
+                        strokeLinecap="round"
+                    />
+                </svg>
+                <MapPin
+                    className="absolute inset-0 m-auto w-4 h-4 text-rose-500 drop-shadow-sm group-hover:scale-110 transition-transform"
+                    fill="currentColor"
+                    strokeWidth={1.5}
+                />
+                <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-black/10 dark:ring-white/10 pointer-events-none" />
             </button>
 
             {open && (

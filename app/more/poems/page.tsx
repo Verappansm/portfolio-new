@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useAnimationControls } from "framer-motion";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
@@ -12,8 +12,15 @@ export default function PoemsPage() {
     const [poemIndex, setPoemIndex] = useState(0);
     const [isFlipping, setIsFlipping] = useState(false);
     const rightControls = useAnimationControls();
+    const stanzasRef = useRef<HTMLDivElement>(null);
 
     const poem = poems[poemIndex];
+
+    useEffect(() => {
+        if (stanzasRef.current) {
+            stanzasRef.current.scrollTop = 0;
+        }
+    }, [poemIndex]);
 
     async function flip(targetIndex: number, d: number) {
         setIsFlipping(true);
@@ -126,7 +133,7 @@ export default function PoemsPage() {
                                 <div className="absolute inset-0 flex flex-col p-7 md:p-10">
                                     <div className="relative" style={{ height: "300px", flexShrink: 0 }}>
                                         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#faf8f5] dark:from-[#1c1a17] to-transparent pointer-events-none z-10" />
-                                        <div className="hide-scrollbar overflow-y-auto h-full space-y-7 pb-12">
+                                        <div ref={stanzasRef} className="hide-scrollbar overflow-y-auto h-full space-y-7 pb-12">
                                             {poem.stanzas.map((stanza, si) => (
                                                 <div key={si} className="space-y-1.5">
                                                     {stanza.map((line, li) => (

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { ArrowLeft, Clock, Calendar, ArrowRight } from "lucide-react";
 import { blogs } from "@/lib/more-data";
 import { Footer } from "@/components/footer";
@@ -7,6 +8,34 @@ import ScrollToTop from "./scroll-to-top";
 
 export function generateStaticParams() {
     return blogs.map((b) => ({ slug: b.slug }));
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+    const { slug } = await params;
+    const blog = blogs.find((b) => b.slug === slug);
+    if (!blog) return {};
+
+    return {
+        title: `${blog.title} | Verappan`,
+        description: blog.excerpt,
+        alternates: { canonical: `/more/blog/${blog.slug}` },
+        openGraph: {
+            type: "article",
+            title: blog.title,
+            description: blog.excerpt,
+            publishedTime: blog.date,
+            url: `/more/blog/${blog.slug}`,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: blog.title,
+            description: blog.excerpt,
+        },
+    };
 }
 
 function renderInline(text: string) {
@@ -31,8 +60,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     const prev = idx > 0 ? blogs[idx - 1] : null;
     const next = idx < blogs.length - 1 ? blogs[idx + 1] : null;
 
+    const articleJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: blog.title,
+        description: blog.excerpt,
+        datePublished: blog.date,
+        author: { "@type": "Person", name: "Verappan", url: "https://verappan.in" },
+        url: `https://verappan.in/more/blog/${blog.slug}`,
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+            />
             <main className="py-14">
                 <ScrollToTop />
                 <div className="container mx-auto px-6 max-w-3xl">

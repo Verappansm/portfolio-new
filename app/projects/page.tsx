@@ -231,7 +231,7 @@ export default function ProjectsPage() {
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             onClick={(e) => e.stopPropagation()}
-                                                            className="text-muted-foreground/35 hover:text-foreground transition-colors"
+                                                            className="text-foreground/70 hover:text-foreground transition-colors"
                                                             aria-label="GitHub"
                                                         >
                                                             <Github className="w-[18px] h-[18px]" />
@@ -275,7 +275,7 @@ export default function ProjectsPage() {
                                                     {project.github && (
                                                         <Link href={project.github} target="_blank" rel="noopener noreferrer"
                                                             onClick={(e) => e.stopPropagation()}
-                                                            className="text-muted-foreground/35 hover:text-foreground transition-colors">
+                                                            className="text-foreground/70 hover:text-foreground transition-colors">
                                                             <Github className="w-[18px] h-[18px]" />
                                                         </Link>
                                                     )}
